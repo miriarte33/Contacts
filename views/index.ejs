@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+	<head>
+		<title><%= title %></title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<a href='/addcontact'>Add Contact</a>
+		<ul>
+			<% contacts.map(contact => { %>
+				<li><%= contact.name %> | <%= contact.number %></li>
+				<button> Delete </button>
+			<% }) %>
+		</ul>
+	</body>
 </html>

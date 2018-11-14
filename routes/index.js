@@ -1,32 +1,31 @@
 var express = require('express');
 var router = express.Router();
 const mysql = require('mysql')
+const bodyParser = require('body-parser')
+
+router.use(bodyParser.urlencoded({ extended: false }))
 require('dotenv').config()
 
-function createCon() {
-	const con = mysql.createConnection({
-		host: 'localhost',
-		user: 'root',
-		password: process.env.PASSWORD,
-		database: 'contacts' 
-	})
+const con = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	password: process.env.PASSWORD,
+	database: 'contacts' 
+})
 
-	con.connect((err) => {
-		if (err) throw err
-	})
+con.connect((err) => {
+	if (err) throw err
+})
 
-	con.query('CREATE TABLE IF NOT EXISTS mycontacts (name CHAR(32), number CHAR(32) PRIMARY KEY)', (err, result) => {
-		if (err) throw err
-		console.log('Table created')
-	})
+con.query('CREATE TABLE IF NOT EXISTS mycontacts (name CHAR(32), number CHAR(32) PRIMARY KEY)', (err, result) => {
+	if (err) throw err
+	console.log('Table created')
+})
 
-	return con
-}
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	const con = createCon()
-	con.query('SELECT * FROM mycontacts', (err, result) => {
+	con.query('SELECT * FROM mycontacts ORDER BY name', (err, result) => {
 		console.log(result)
 		res.render('index', { 
 			title: 'Contacts', 
