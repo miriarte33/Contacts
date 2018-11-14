@@ -10,7 +10,9 @@
 		<ul>
 			<% contacts.map(contact => { %>
 				<li><%= contact.name %> | <%= contact.number %></li>
-				<button> Delete </button>
+				<form action='/' method='post'>
+					<button type='submit' name='id' value=<%= contact.id %>> Delete </button>
+				</form>
 			<% }) %>
 		</ul>
 	</body>
