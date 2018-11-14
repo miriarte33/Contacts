@@ -26,12 +26,25 @@ con.query('CREATE TABLE IF NOT EXISTS mycontacts (name CHAR(32), number CHAR(32)
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	con.query('SELECT * FROM mycontacts ORDER BY name', (err, result) => {
-		console.log(result)
 		res.render('index', { 
 			title: 'Contacts', 
 			contacts: result
 		});
 	})
 });
+
+router.post('/', (req, res, next) => {
+	const sql = `DELETE FROM mycontacts WHERE id="${req.body.id}"`
+	con.query(sql, (err, result) => {
+		if(err) throw err
+		con.query('SELECT * FROM mycontacts ORDER BY name', (err, result) => {
+			if(err) throw err
+			res.render('index', {
+				title: 'Contacts',
+				contacts: result
+			})
+		})
+	})
+})
 
 module.exports = router
