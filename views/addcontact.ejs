@@ -2,12 +2,13 @@
 <head>
 	<meta charset="utf-8">
 	<title>Add Contact</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Description"> 
 </head>
 <body>
 	<a href='/'>View Contacts</a>
-	<form action='/addcontact' method='post'>
+	<form class='add-contact' action='/addcontact' method='post'>
 		<input id='name' name='name' type='text' placeholder='name' required>
 		<input id='number' name='number' type='text' placeholder='Phone Number' required>
 		<input type='submit' value='Add Contact'>

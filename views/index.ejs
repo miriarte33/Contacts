@@ -9,10 +9,12 @@
 		<a href='/addcontact'>Add Contact</a>
 		<ul>
 			<% contacts.map(contact => { %>
-				<li><%= contact.name %> | <%= contact.number %></li>
-				<form action='/' method='post'>
-					<button type='submit' name='id' value=<%= contact.id %>> Delete </button>
-				</form>
+				<li>
+					<p><%= contact.name %> | <%= contact.number %></p>
+					<form action='/' method='post'>
+						<button type='submit' name='id' value=<%= contact.id %>> Delete </button>
+					</form>
+				</li>
 			<% }) %>
 		</ul>
 	</body>
