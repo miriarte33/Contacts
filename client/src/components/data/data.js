@@ -17,8 +17,8 @@ class Data extends Component {
 			<div>
 				<h2>Data: </h2>
 				<ul>
-					{this.state.contacts.map(contact => {
-						return <li key={contact.id}>{ contact.firstName } { contact.lastName }</li>
+					{this.state.contacts.map((contact, index) => {
+						return <li key={index}>{ contact.fname } { contact.lname }</li>
 					})}
 				</ul>
 			</div>
