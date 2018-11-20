@@ -1,19 +1,25 @@
 {
-  "name": "contacts",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "dotenv": "^6.1.0",
-    "ejs": "~2.5.7",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "morgan": "~1.9.0",
-    "mysql": "^2.16.0"
-  }
+	"name": "reactexpress",
+	"version": "1.0.0",
+	"description": "Boilerplate for React and Express",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js",
+		"server": "nodemon server.js",
+		"client": "cd client && npm start",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Manrique Iriarte",
+	"license": "ISC",
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"concurrently": "^4.1.0",
+		"dotenv": "^6.1.0",
+		"express": "^4.16.4",
+		"mysql": "^2.16.0"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.6"
+	}
 }
