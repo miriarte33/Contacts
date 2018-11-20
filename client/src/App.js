@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import Data from './components/data/data'
+import AddContact from './components/addcontact/addcontact'
 import './App.css';
+import { Route, BrowserRouter } from 'react-router-dom'
 
 class App extends Component {
 	render() {
 		return (
-			<div className="App">
-				<Data />
-			</div>
+			<BrowserRouter>
+				<div className="App">
+					<Route exact path='/' render={() => <Data /> } /> 
+					<Route exact path='/addcontact' render={() => <AddContact />}/>
+				</div>
+			</BrowserRouter>
 		);
 	}
 }

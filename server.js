@@ -34,7 +34,6 @@ app.get('/api/data', (req, res) => {
 })
 
 app.post('/api/data/delete', (req, res) => {
-	console.log(req.body)
 	con.query(`DELETE FROM mycontacts WHERE id=${req.body.id}`, (err, result) => {
 		if (err) throw err
 		const del = data.find(contact => {
@@ -43,6 +42,13 @@ app.post('/api/data/delete', (req, res) => {
 		const index = data.indexOf(del)
 		data.splice(index, 1)
 		res.json(data)
+	})
+})
+
+app.post('/api/data/addcontact', (req, res) => {
+	const sql = `INSERT INTO mycontacts (fname, lname, number, email) VALUES ("${req.body.fname}", "${req.body.lname}", "${req.body.number}", "${req.body.email}")`
+	con.query(sql, (err, result) => {
+		if (err) throw err
 	})
 })
 

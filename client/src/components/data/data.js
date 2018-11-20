@@ -1,56 +1,32 @@
 import React, { Component } from 'react'
 import './data.css'
+import Contact from '../contact/contact'
+import { Link } from 'react-router-dom'
 
 class Data extends Component {
 	state = {
 		contacts: [],
-		contactid: '' 
+		deleted: false
 	}
 
 	componentDidMount() {
 		fetch('/api/data').then(res => res.json()).then(contacts => {
-			this.setState({contacts}, () => console.log(contacts))
+			this.setState({contacts})
 		})
 	}
-
-	deleteContact(e) {
-		e.preventDefault()
-		fetch('/api/data', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				id: this.state.contactid
-			}).then(res => res.json()).then(contacts => this.setState({contacts}))
-		})
+	
+	deleteContact = () => {
+		this.setState({deleted: true}) 
 	}
 
 	render() {
 		return (
 			<div>
-				<h2>Data: </h2>
+				<Link to='/addcontact'>Add Contact</Link>
+				<h2>Contacts: </h2>
 				<ul>
 					{this.state.contacts.map((contact, index) => {
-						return (
-							<li key={index}>
-								{ contact.fname } { contact.lname } 
-								<form onSubmit={e => {
-									e.preventDefault()
-									fetch('/api/data/delete', {
-										method: 'POST',
-										headers: {
-											'Content-Type': 'application/json'
-										},
-										body: JSON.stringify({
-											id: this.state.contactid
-										})
-									}).then(res => res.json()).then(contacts => this.setState({contacts}))
-								}}>
-									<input onClick={e => this.setState({contactid: contact.id})} type='submit' value='Delete'/>
-								</form>
-							</li>
-						)
+						return <Contact contactdeleted={this.deleteContact} contact={contact} key={index}/> 
 					})}
 				</ul>
 			</div>

@@ -1,8 +1,10 @@
-# Full Stack app boilerplate #
-This is a boilerplate for creating full stack applications using React and Express. Created following a tutorial by [Brad Traversy](https://www.youtube.com/watch?v=v0t42xBIYIs&index=2&list=LLonK6UW11g8jbqKTEEF7PuQ&t=247s). 
-## Instructions ##
-The express code for using the database is in ```server.js```. 
-For now there is only a hard coded array, but normally this is where any MySQL or MongoDB databases would be used. All client-side React code should be put in the ```client``` directory. 
+# Contacts #
+Fullstack Contacts app built with Express to communicate with a MySQL database in the backend and React for the frontend. Store and delete contacts saved in a local database. 
 ## To Run ##
-Run ```npm install``` in the root directory to install the Express dependencis. Then ```cd client``` to get to the client directory and run ```npm install``` to install the React dependencies. Back in the root directory, run ```npm run dev``` to start the server as well as the app. 
+### Dependencies ###
+[MySQL](https://www.mysql.com/downloads/) must be downloaded and an account must be created in order to use this program. Create a database called contacts in MySQL before proceeding. 
+### Instructions ###
+Use ```npm install``` to install all express dependencies. Create a .env file in the root directory and place your MySQL password in there like this: 
+```PASSWORD = "*****************"```. To start the project, use ```npm start```
+Afterwards, cd into the client directory and run ```npm install``` again to install all react dependencies. Back in the root directory, use ```npm run dev``` to start the express server on port 5000 and the react app on port 3000.
 
