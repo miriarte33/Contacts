@@ -18,7 +18,7 @@ con.connect(err => {
 	if (err) throw err
 })
 
-con.query('CREATE TABLE IF NOT EXISTS mycontacts (fname CHAR(32), lname CHAR(32), number CHAR(32), email CHAR(50), PRIMARY KEY(number, email))', (err, result) => {
+con.query('CREATE TABLE IF NOT EXISTS mycontacts (id INT AUTO_INCREMENT PRIMARY KEY, fname CHAR(32), lname CHAR(32), number CHAR(32), email CHAR(50))', (err, result) => {
 	if (err) throw err
 	console.log('Table Created!')
 })
@@ -29,6 +29,19 @@ app.get('/api/data', (req, res) => {
 	con.query('SELECT * FROM mycontacts ORDER BY lname', (err, result) => {
 		if (err) throw err
 		data = result
+		res.json(data)
+	})
+})
+
+app.post('/api/data/delete', (req, res) => {
+	console.log(req.body)
+	con.query(`DELETE FROM mycontacts WHERE id=${req.body.id}`, (err, result) => {
+		if (err) throw err
+		const del = data.find(contact => {
+			return contact.id === req.body.id
+		})
+		const index = data.indexOf(del)
+		data.splice(index, 1)
 		res.json(data)
 	})
 })
