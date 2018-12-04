@@ -5,8 +5,10 @@ ul {
 	margin: auto; 
 }
 
-li {
+.contact {
 	font-size: 1.3rem; 
 	line-height:2rem;
-	border-bottom: 1px dotted #777
+	border-bottom: 1px dotted #777;
+	display: flex; 
+	flex-direction: column;
 }
